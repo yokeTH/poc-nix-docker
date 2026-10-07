@@ -14,7 +14,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let client = Client::builder().timeout(Duration::from_secs(15)).build()?;
 
     let app = Router::new()
-        .route("/health", get(|| async { "ok" }))
+        .route("/health", get(|| async { "ok - layer reuse test" }))
         .route("/pokemon/{name}", get(pokemon))
         .with_state(client);
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
